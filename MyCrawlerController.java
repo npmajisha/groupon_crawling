@@ -6,16 +6,14 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 public class MyCrawlerController {
 	public static void main(String[] args) throws Exception {
-		String crawlStorageFolder = "/data/crawl/root";
+		String crawlStorageFolder = "E:/Fall2015/CSCI548/HW1/data/crawl/root/";
 		String userAgentIdentifier = "csci548-crawler";
-		int maxDepthOfCrawling = 1;
 		int numberOfCrawlers = 7;
 
 		String[] seedUrls = { "https://www.groupon.com/browse/los-angeles?category=things-to-do",
 				"https://www.groupon.com/browse/los-angeles?category=food-and-drink" };
 
 		CrawlConfig config = new CrawlConfig();
-		config.setMaxDepthOfCrawling(maxDepthOfCrawling);
 		config.setUserAgentString(userAgentIdentifier);
 		config.setCrawlStorageFolder(crawlStorageFolder);
 
