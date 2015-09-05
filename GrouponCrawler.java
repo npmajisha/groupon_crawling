@@ -15,7 +15,8 @@ import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
 public class GrouponCrawler extends WebCrawler {
-	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg" + "|png|mp3|mp3|zip|gz))$");
+	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|bmp|gif|jpe?g" + "|png|tiff?|mid|mp2|mp3|mp4"
+			+ "|wav|avi|mov|mpeg|ram|m4v|pdf" + "|rm|smil|wmv|swf|wma|zip|rar|gz))$");
 	private final static String CURRENCY_SYMBOL = "$";
 	private static String[] CRAWL_DOMAIN = { "https://www.groupon.com/browse/los-angeles?category=things-to-do",
 			"https://www.groupon.com/browse/los-angeles?category=food-and-drink", "https://www.groupon.com/deals" };
