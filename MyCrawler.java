@@ -8,6 +8,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
 
 public class MyCrawler extends WebCrawler {
 	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg" + "|png|mp3|mp3|zip|gz))$");
+	private final static String DOMAIN = "https://www.groupon.com";
 
 	/**
 	 * This method receives two parameters. The first parameter is the page in
@@ -16,13 +17,13 @@ public class MyCrawler extends WebCrawler {
 	 * should be crawled or not (based on your crawling logic). In this example,
 	 * we are instructing the crawler to ignore urls that have css, js, git, ...
 	 * extensions and to only accept urls that start with
-	 * "http://www.ics.uci.edu/". In this case, we didn't need the referringPage
-	 * parameter to make the decision.
+	 * "https://www.groupon.com/deals/". In this case, we didn't need the
+	 * referringPage parameter to make the decision.
 	 */
 	@Override
 	public boolean shouldVisit(Page referringPage, WebURL url) {
 		String href = url.getURL().toLowerCase();
-		return !FILTERS.matcher(href).matches() && href.startsWith("http://www.ics.uci.edu/");
+		return !FILTERS.matcher(href).matches() && href.startsWith(DOMAIN);
 	}
 
 	/**

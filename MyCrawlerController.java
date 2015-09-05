@@ -6,34 +6,41 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 public class MyCrawlerController {
 	public static void main(String[] args) throws Exception {
-        String crawlStorageFolder = "/data/crawl/root";
-        int numberOfCrawlers = 7;
+		String crawlStorageFolder = "/data/crawl/root";
+		String userAgentIdentifier = "csci548-crawler";
+		int maxDepthOfCrawling = 1;
+		int numberOfCrawlers = 7;
 
-        CrawlConfig config = new CrawlConfig();
-        config.setCrawlStorageFolder(crawlStorageFolder);
+		String[] seedUrls = { "https://www.groupon.com/browse/los-angeles?category=things-to-do",
+				"https://www.groupon.com/browse/los-angeles?category=food-and-drink" };
 
-        /*
-         * Instantiate the controller for this crawl.
-         */
-        PageFetcher pageFetcher = new PageFetcher(config);
-        RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
-        RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
-        CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
+		CrawlConfig config = new CrawlConfig();
+		config.setMaxDepthOfCrawling(maxDepthOfCrawling);
+		config.setUserAgentString(userAgentIdentifier);
+		config.setCrawlStorageFolder(crawlStorageFolder);
 
-        /*
-         * For each crawl, you need to add some seed urls. These are the first
-         * URLs that are fetched and then the crawler starts following links
-         * which are found in these pages
-         */
-        controller.addSeed("http://www.ics.uci.edu/~lopes/");
-        controller.addSeed("http://www.ics.uci.edu/~welling/");
-        controller.addSeed("http://www.ics.uci.edu/");
+		/*
+		 * Instantiate the controller for this crawl.
+		 */
+		PageFetcher pageFetcher = new PageFetcher(config);
+		RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
+		RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
+		CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
 
-        /*
-         * Start the crawl. This is a blocking operation, meaning that your code
-         * will reach the line after this only when crawling is finished.
-         */
-        controller.start(MyCrawler.class, numberOfCrawlers);
-    }
+		/*
+		 * For each crawl, you need to add some seed urls. These are the first
+		 * URLs that are fetched and then the crawler starts following links
+		 * which are found in these pages
+		 */
+		for (String seedUrl : seedUrls) {
+			controller.addSeed(seedUrl);
+		}
+
+		/*
+		 * Start the crawl. This is a blocking operation, meaning that your code
+		 * will reach the line after this only when crawling is finished.
+		 */
+		controller.start(MyCrawler.class, numberOfCrawlers);
+	}
 
 }
