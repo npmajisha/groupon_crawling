@@ -11,12 +11,14 @@ public class GrouponCrawlerController {
 		String userAgentIdentifier = args[0];
 		int numberOfCrawlers = Integer.parseInt(args[1]);
 		String crawlStorageFolder = args[2];
+		int maxDepthOfCrawling = 4;
 
 		String[] seedUrls = { "https://www.groupon.com/browse/los-angeles?category=things-to-do",
 				"https://www.groupon.com/browse/los-angeles?category=food-and-drink" };
 
 		CrawlConfig config = new CrawlConfig();
 		config.setUserAgentString(userAgentIdentifier);
+		config.setMaxDepthOfCrawling(maxDepthOfCrawling);
 		config.setCrawlStorageFolder(crawlStorageFolder);
 
 		/*
