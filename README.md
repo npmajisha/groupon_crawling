@@ -5,18 +5,25 @@ restaurants, services, stores, electronics etc. in your city. Groupon however do
 filter based on the price of deals.
 This web crawler was built with an intention to crawl the groupon website, specifically for the city
 of Los Angeles and get deals in the category "Food and Drinks" and "Things to do" under $50.
+
 The web crawler extends from the open source crawling framework
 "crawler4j"(https://github.com/yasserg/crawler4j).
+
+
 There are two classes that have to be implemented/extended. 
+
 1.	Controller class – This is the class where we specify the seeds of the crawl,
     the folder in which intermediate crawl data has to be stored, and number of concurrent threads.
     The Crawl configuration has to be set in this class which includes maximum depth of crawling, number of threads,
     the politeness setting, user agent string (in order to identify the crawler).
+
 2.	Crawler class – This has to be extended from the WebCrawler class in crawler4j. 
     This class decides which URLs have to be crawled and handles downloading of the page.
     The two main functions that have to be overridden are:
+
     a.	shouldVisit – This function decides whether the page with a given URL has to be crawled or not.
         We can define our own filters for example not allowing stylesheets, script files etc.
+        
     b.	visit – This function is called after the content of the URL is downloaded successfully. 
         You can easily fetch all the text, html, links and unique id of the downloaded page.
 
